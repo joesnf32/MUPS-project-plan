@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Moto United KPI Dashboard — Work Plan</title>
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===================== PASSWORD GATE ===================== -->
+<div id="gate" class="gate">
+  <form id="gate-form" class="gate-card" autocomplete="off">
+    <div class="gate-stamp">MU‑17</div>
+    <h1 class="gate-title">Moto United<br>Work Plan</h1>
+    <p class="gate-sub">Fall 2026 · Internal use only</p>
+    <label class="gate-label" for="gate-password">Access code</label>
+    <input id="gate-password" class="gate-input" type="password" placeholder="••••••••" autofocus />
+    <button type="submit" class="gate-button">Unlock</button>
+    <p id="gate-error" class="gate-error" hidden>Wrong code — ask the project lead.</p>
+  </form>
+</div>
+
+<!-- ===================== SITE ===================== -->
+<div id="site" class="site" hidden>
+
+  <header class="hero">
+    <div class="hero-top">
+      <div class="hero-mark">MU‑17</div>
+      <button id="lock-btn" class="lock-btn" title="Lock this page">Lock</button>
+    </div>
+    <h1 class="hero-title">Moto United KPI Dashboard</h1>
+    <p class="hero-subtitle">Work plan &amp; project schedule — <span id="meta-sponsor"></span></p>
+
+    <dl class="hero-facts">
+      <div><dt>Lead</dt><dd id="meta-lead"></dd></div>
+      <div><dt>Window</dt><dd id="meta-window"></dd></div>
+      <div><dt>Planned hours</dt><dd id="meta-hours"></dd></div>
+      <div><dt>Minimum required</dt><dd id="meta-min"></dd></div>
+    </dl>
+
+    <div class="ruler-wrap">
+      <div class="timeline-controls">
+        <div class="view-toggle">
+          <button id="view-overview-btn" type="button" class="view-toggle-btn active">Overview</button>
+          <button id="view-week-btn" type="button" class="view-toggle-btn">Week</button>
+        </div>
+        <div id="week-nav" class="week-nav" hidden>
+          <button id="week-prev-btn" type="button" class="week-nav-btn" aria-label="Previous week">‹</button>
+          <span id="week-label" class="week-label"></span>
+          <button id="week-next-btn" type="button" class="week-nav-btn" aria-label="Next week">›</button>
+        </div>
+      </div>
+      <div id="ruler-months" class="ruler-months"></div>
+      <div id="timeline" class="timeline"></div>
+      <div id="timeline-legend" class="timeline-legend"></div>
+    </div>
+
+    <div class="progress-row">
+      <div class="progress-track"><div id="progress-fill" class="progress-fill"></div></div>
+      <span id="progress-count" class="progress-count"></span>
+      <span id="progress-pct" class="progress-pct"></span>
+      <button id="reset-progress" type="button" class="reset-btn">Reset checkmarks</button>
+    </div>
+    <p class="progress-note"><span id="sync-status" class="sync-status sync-local">Saving on this device only</span></p>
+  </header>
+
+  <main class="content">
+
+    <section class="panel" id="team-panel">
+      <h2 class="panel-title">Hours by team member</h2>
+      <div id="team-bars" class="team-bars"></div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head-row">
+        <h2 class="panel-title">Phases &amp; tasks</h2>
+        <div class="controls">
+          <input id="search" class="search-input" type="search" placeholder="Search tasks…" />
+          <select id="owner-filter" class="owner-select">
+            <option value="">All owners</option>
+          </select>
+        </div>
+      </div>
+      <p class="panel-note" id="task-count-note">493 planned items across 17 phases. Click a phase to open it.</p>
+      <div id="phase-list" class="phase-list"></div>
+    </section>
+
+  </main>
+
+  <footer class="foot">
+    <p>Built from the Fall 2026 work plan spreadsheet. Planned effort only — confirm early-week entries against actuals.</p>
+  </footer>
+
+</div>
+
+<script src="firebase-config.js"></script>
+<script src="data.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
